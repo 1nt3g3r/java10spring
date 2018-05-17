@@ -1,11 +1,19 @@
 package com.webdev.siteparser.listener;
 
+import com.webdev.siteparser.domain.Page;
+import com.webdev.siteparser.domain.Project;
+import com.webdev.siteparser.repository.PageRepository;
+import com.webdev.siteparser.repository.ProjectRepository;
 import com.webdev.siteparser.service.cli.HtmlAnalyseCLI;
+import com.webdev.siteparser.service.jpa.PageService;
+import com.webdev.siteparser.service.jpa.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class AppReadyListener {
@@ -15,8 +23,17 @@ public class AppReadyListener {
     @Autowired
     private HtmlAnalyseCLI cli;
 
+    @Autowired
+    private PageService pageService;
+
     @EventListener(ApplicationReadyEvent.class)
     public void appReady() {
+
+        List<Page> pages = pageService.getAll(1);
+        for(Page p: pages) {
+            System.out.println(p);
+        }
+
         if (launchMode != null && launchMode.equals("cli")) {
             cli.start();
         }
