@@ -14,6 +14,9 @@ public class Project {
     @Column(name = "domain")
     private String domain;
 
+    @Column(name = "parsingEnabled")
+    private boolean parsingEnabled;
+
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Page> pages = new HashSet<>();
 
@@ -39,5 +42,13 @@ public class Project {
 
     public void setPages(Set<Page> pages) {
         this.pages = pages;
+    }
+
+    public boolean isParsingEnabled() {
+        return parsingEnabled;
+    }
+
+    public void setParsingEnabled(boolean parsingEnabled) {
+        this.parsingEnabled = parsingEnabled;
     }
 }

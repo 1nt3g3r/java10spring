@@ -26,13 +26,18 @@ public class AppReadyListener {
     @Autowired
     private PageService pageService;
 
+    @Autowired
+    private ProjectService projectService;
+
     @EventListener(ApplicationReadyEvent.class)
     public void appReady() {
-
-        List<Page> pages = pageService.getAll(1);
-        for(Page p: pages) {
-            System.out.println(p);
-        }
+//        pageService.clean();
+//        projectService.clean();
+//
+//        Project project = new Project();
+//        project.setDomain("https://habr.com");
+//        project.setParsingEnabled(true);
+//        projectService.save(project);
 
         if (launchMode != null && launchMode.equals("cli")) {
             cli.start();

@@ -15,4 +15,19 @@ public interface PageRepository extends JpaRepository<Page, Long> {
 
     @Query("from Page p where p.project.id = :projectId")
     List<Page> getPagesByProjectId(@Param("projectId") long projectId);
+
+    @Query("from Page p where p.project.id = :projectId and p.content = null")
+    List<Page> getUnparsedProjectPages(@Param("projectId") long projectId);
+
+    @Query("from Page p where p.project.id = :projectId and p.url like %:keyword%")
+    List<Page> getByKeywordInUrl(@Param("projectId") long projectId, @Param("keyword") String keyword);
+
+    @Query("from Page p where p.project.id = :projectId and p.title like %:keyword%")
+    List<Page> getByKeywordInTitle(@Param("projectId") long projectId, @Param("keyword") String keyword);
+
+    @Query("from Page p where p.project.id = :projectId and p.content like %:keyword%")
+    List<Page> getByKeywordInContent(@Param("projectId") long projectId, @Param("keyword") String keyword);
+
+    @Query("from Page p where p.project.id = :projectId and p.description like %:keyword%")
+    List<Page> getByKeywordInDescription(@Param("projectId") long projectId, @Param("keyword") String keyword);
 }

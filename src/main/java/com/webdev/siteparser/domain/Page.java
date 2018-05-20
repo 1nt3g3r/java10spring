@@ -12,12 +12,14 @@ public class Page {
     @Column(name = "url")
     private String url;
 
+    @Lob
     @Column(name = "content")
     private String content;
 
     @Column(name = "title")
     private String title;
 
+    @Lob
     @Column(name = "description")
     private String description;
 

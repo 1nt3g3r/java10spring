@@ -13,8 +13,19 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
+    @Autowired
+    private PageService pageService;
+
     public Project save(Project project) {
         projectRepository.save(project);
+
+        if (project.getPages().size() == 0) {
+            Page indexPage = new Page();
+            indexPage.setUrl(project.getDomain());
+            indexPage.setProject(project);
+            pageService.save(indexPage);
+        }
+
         return project;
     }
 
@@ -28,5 +39,13 @@ public class ProjectService {
 
     public void delete(Project project) {
         projectRepository.delete(project);
+    }
+
+    public List<Project> getProjectsWithEnabledParsing() {
+        return projectRepository.getProjectWithParsingEnabled();
+    }
+
+    public void clean() {
+        projectRepository.deleteAll();
     }
 }

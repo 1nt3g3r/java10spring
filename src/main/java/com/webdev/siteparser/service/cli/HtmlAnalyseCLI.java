@@ -49,6 +49,8 @@ public class HtmlAnalyseCLI {
 
         handlers.put("exit", context.getBean(ExitCLICommandHandler.class));
         handlers.put("help", context.getBean(HelpCLICommandHandler.class));
+        handlers.put("listProjects", context.getBean(ListProjectsCLIHandler.class));
+        handlers.put("search", context.getBean(SearchProjectCLIHandler.class));
     }
 
     public void start() {
@@ -67,12 +69,15 @@ public class HtmlAnalyseCLI {
             }
         }
     }
+    //searchProject <ID> key1 key2
+    private void handleCommand(String commandLine) {
+        String[] commandParts = commandLine.split(" ");
+        String command = commandParts[0];
 
-    private void handleCommand(String command) {
         if (handlers.containsKey(command)) {
-            handlers.get(command).handleCommand(command, this);
+            handlers.get(command).handleCommand(commandLine, this);
         } else {
-            System.out.println("Unknown command: <" + command + ">. Type <help> to get help");
+            System.out.println("Unknown command: <" + commandLine + ">. Type <help> to get help");
         }
     }
 
