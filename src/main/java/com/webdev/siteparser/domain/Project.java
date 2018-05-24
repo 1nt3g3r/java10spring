@@ -1,5 +1,7 @@
 package com.webdev.siteparser.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +19,7 @@ public class Project {
     @Column(name = "parsingEnabled")
     private boolean parsingEnabled;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Page> pages = new HashSet<>();
 
