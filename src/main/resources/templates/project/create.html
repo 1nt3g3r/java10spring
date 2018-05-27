@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Додавання нового проекту</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<!-- Top menu -->
+<div th:replace="fragments/menu.html :: top-menu"/>
+
+    <div class="w3-container w3-margin-top">
+        <div class="w3-card w3-grey">
+            <div class="w3-container w3-blue">
+                <h3>Додавання нового проекту</h3>
+            </div>
+        </div>
+
+        <form action="/project/add" method="post">
+            <div class="w3-container w3-margin-top w3-padding w3-light-grey">
+                <h4>URL проекту:</h4>
+                <input class="w3-input w3-border" type="text" name="domain" placeholder="Введіть URL сайту з протоколом (HTTP або HTTPS)"/>
+
+                <br style="height: 24px"/>
+
+                <input class="w3-check" type="checkbox" name="parsingEnabled"/>
+                <label>Почати одразу парсинг</label>
+
+                <br style="height: 64px"/>
+
+                <div class="w3-container w3-margin-top">
+                    <input type="submit" class="w3-button w3-right w3-blue" value="Створити проект"/>
+                </div>
+
+                <br style="height: 24px"/>
+            </div>
+        </form>
+
+
+    </div>
+
+</body>
+</html>

@@ -50,8 +50,18 @@ public class PageService {
         return pageRepository.getUnparsedProjectPages(p.getId()).size() > 0;
     }
 
+    public int getPageCount(long projectId) {
+        return pageRepository.getPageCount(projectId);
+    }
+
     public List<Page> getUnparsedProjectPages(Project p) {
         return pageRepository.getUnparsedProjectPages(p.getId());
+    }
+
+    public List<Page> getPage(long projectid, int pageNumber, int count) {
+        int offset = pageNumber * count;
+
+        return pageRepository.getPagesByProjectIdWithOffset(projectid, offset, count);
     }
 
     public void clean() {

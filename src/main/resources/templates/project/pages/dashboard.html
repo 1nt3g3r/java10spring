@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Сторінки проекту ' + ${project.domain}">Сторінки проекту</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+    <!-- Top menu -->
+    <div th:replace="fragments/menu.html :: top-menu"/>
+
+    <div class="w3-container w3-margin-top">
+        <div class="w3-container">
+            <div class="w3-container w3-blue">
+                <h3 th:text="'Сторінки проекту ' + ${project.domain}">Сторінки проекту</h3>
+            </div>
+
+            <div class="w3-container w3-light-grey">
+                <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable">
+                    <tr>
+                        <th>№</th>
+                        <th>ID</th>
+                        <th>URL</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Content</th>
+                    </tr>
+                    <tr th:each="page : ${pages}">
+                        <td th:text="${indices.get(page.id)}">1</td>
+                        <td th:text="${page.id}">1</td>
+                        <td> <a href="#" target="_blank" th:href="${page.url}" th:text="${page.url}">URL</a></td>
+                        <td th:text="${page.title}">Title</td>
+                        <td th:text="${page.description}">Description</td>
+                        <td th:text="${content.get(page.id)}">Content</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="w3-container w3-margin-top">
+                <a th:if="${pageNumber > 0}" th:href="'/project/pages/?projectId=' + ${project.id} + '&pageNumber=' + ${pageNumber - 1}" href="#" class="w3-button w3-blue">Попередня сторінка</a>
+                <span th:text="'Сторінка №' + ${pageNumber + 1}" style="width: 70%; text-align: center; display: inline-block; font-weight: bold;">Сторінка №5</span>
+                <a th:if="${pageNumber < pageCount - 1}" th:href="'/project/pages/?projectId=' + ${project.id} + '&pageNumber=' + ${pageNumber + 1}" href="#" class="w3-button w3-blue w3-right">Наступна сторінка</a>
+            </div>
+
+            <br style="height: 64px"/>
+        </div>
+    </div>
+
+</body>
+</html>
