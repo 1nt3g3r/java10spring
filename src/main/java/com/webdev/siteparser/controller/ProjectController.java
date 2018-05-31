@@ -11,9 +11,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ProjectController {
+public class ProjectController extends BaseSecurityController {
     @Autowired
     private ProjectService projectService;
+
+    @GetMapping("/projects")
+    public ModelAndView index(@RequestParam(required = false, defaultValue = "42") String value) {
+        ModelAndView modelAndView = createModelAndView("projects");
+
+        modelAndView.addObject("projects", projectService.getAll());
+
+        return modelAndView;
+    }
 
     @GetMapping("/project/changeParsingState")
     public String changeParsingState(@RequestParam(name = "projectId", required = true) long projectId,
@@ -38,8 +47,8 @@ public class ProjectController {
     }
 
     @GetMapping("/project/add")
-    public String showCreateProjectPage() {
-        return "/project/create";
+    public ModelAndView showCreateProjectPage() {
+        return createModelAndView("project/create");
     }
 
     @PostMapping("/project/add")

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class PageController {
+public class PageController extends BaseSecurityController {
     public static final int PAGE_SIZE = 100;
 
     @Autowired
@@ -32,7 +32,7 @@ public class PageController {
     public ModelAndView dashboard(@RequestParam long projectId, @RequestParam(required = false, defaultValue = "0") String pageNumber) {
         int pNumber = Integer.parseInt(pageNumber);
 
-        ModelAndView modelAndView = new ModelAndView("/project/pages/dashboard");
+        ModelAndView modelAndView = createModelAndView("/project/pages/dashboard");
 
         int index = 0;
         if (projectService.exists(projectId)) {

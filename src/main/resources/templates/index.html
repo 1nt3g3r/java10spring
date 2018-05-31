@@ -17,39 +17,20 @@
 
             <!-- Header -->
             <div class="w3-container w3-blue">
-                <h3 th:text="'Проекти (' + ${projects.size()} + ' шт.)'">Проекти</h3>
+                <h3>Парсер сайтів</h3>
             </div>
 
             <div style="height: 24px;"></div>
 
-            <div th:each="project : ${projects}" class="w3-container">
-                <div class="w3-container w3-light-blue">
-                    <h3 th:text="${project.domain}">Назва проекту</h3>
-                </div>
-
-                <div class="w3-container w3-light-gray">
-                    <ul class="w3-ul">
-                        <li th:text="'Кількість сторінок: ' + ${project.pages.size()}">Кількість сторінок: 100</li>
-                        <li th:with="parsingState=${project.parsingEnabled} ? 'запущений' : 'зупинений'" th:text="'Стан парсингу: ' + ${parsingState}">Стан парсингу: запущений</li>
-                    </ul>
-
-                    <div style="height: 24px;"></div>
-
-                    <div class="w3-container">
-                        <a th:href="'/project/delete/?projectId=' + ${project.id}" href="#" class="w3-button w3-orange">Видалити проект</a>
-                        <a th:href="'/project/pages?projectId=' + ${project.id}" href="#" class="w3-button w3-blue w3-right w3-margin-left">Сторінки</a>
-                        <a th:with="projectId=${project.id},parsingEnabled=${!project.parsingEnabled}" th:href="'/project/changeParsingState?projectId=' + ${projectId} + '&parsingEnabled=' + ${parsingEnabled}" th:text="${project.parsingEnabled} ? 'Зупинити парсинг' : 'Почати парсинг'" href="#" th:attr="class='w3-button w3-right ' + (${project.parsingEnabled} ? 'w3-red' : 'w3-green')" class="w3-button w3-blue w3-right">Запустити парсинг</a>
-                    </div>
-
-                    <div style="height: 24px;"></div>
-
-                </div>
-
-                <div style="height: 24px;"></div>
+            <div class="w3-container">
+                <p>
+                    На цьому сайті ви можете парсити та аналізувати інформацію з інших сайтів.
+                     Натисніть на кнопку Проекти, авторизуйтесь, та починайте роботу
+                </p>
             </div>
 
-            <div class="w3-container">
-                <a class="w3-button w3-right w3-blue w3-large" href="/project/add">Створити проект</a>
+            <div class="w3-container w3-margin-top">
+                <a href="/projects" class="w3-button w3-blue w3-right">Проекти</a>
             </div>
 
             <div style="height: 24px;"></div>
