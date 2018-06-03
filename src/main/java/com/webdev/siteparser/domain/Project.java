@@ -19,6 +19,10 @@ public class Project {
     @Column(name = "parsingEnabled")
     private boolean parsingEnabled;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId")
+    private User user;
+
     @JsonIgnore
     @OneToMany(mappedBy = "project", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Page> pages = new HashSet<>();
@@ -53,5 +57,13 @@ public class Project {
 
     public void setParsingEnabled(boolean parsingEnabled) {
         this.parsingEnabled = parsingEnabled;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

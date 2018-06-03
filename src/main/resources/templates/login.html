@@ -16,13 +16,16 @@
 </div>
 
 <div class="w3-container">
-    <div class="w3-card w3-white" style="width: 300px; margin: auto">
+    <div class="w3-card w3-white" style="width: 600px; margin: auto; margin-top: 100px;">
         <div class="w3-container w3-blue"><h3>Вхід в систему</h3></div>
         <div class="w3-panel w3-padding-16">
             <form th:action="@{/login}" method="post">
                 <div><label> Логін : <input placeholder="Введіть ваш логін" class="w3-input w3-border w3-margin-bottom" type="text" name="username"/> </label></div>
                 <div><label> Пароль: <input placeholder="Введіть ваш пароль" class="w3-input w3-border w3-margin-bottom" type="password" name="password"/> </label></div>
-                <div><input class="w3-button w3-blue w3-right" type="submit" value="Ввійти"/></div>
+                <div>
+                    <a href="/register" class="w3-button w3-green">Реєстрація</a>
+                    <input class="w3-button w3-blue w3-right" type="submit" value="Ввійти"/>
+                </div>
             </form>
         </div>
     </div>

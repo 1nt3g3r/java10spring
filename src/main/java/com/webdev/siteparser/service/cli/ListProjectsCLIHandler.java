@@ -13,8 +13,8 @@ public class ListProjectsCLIHandler implements CLICommandHandler {
     @Override
     public void handleCommand(String command, HtmlAnalyseCLI cli) {
         System.out.println("List of projects:");
-        for(Project project: projectService.getAll()) {
-            System.out.println(project.getDomain() + " (" + project.getPages().size() + " pages). ID: " + project.getId());
-        }
+//        for(Project project: projectService.getAll()) {
+//            System.out.println(project.getDomain() + " (" + project.getPages().size() + " pages). ID: " + project.getId());
+//        }
     }
 }

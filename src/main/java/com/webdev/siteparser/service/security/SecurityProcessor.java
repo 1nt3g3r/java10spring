@@ -21,7 +21,12 @@ public class SecurityProcessor {
         return result;
     }
 
-    private User getUser() {
+    public String getCurrentUserEmail() {
+        User user = getUser();
+        return user == null ? null : user.getUsername();
+    }
+
+    public User getUser() {
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
 

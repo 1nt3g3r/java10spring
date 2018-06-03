@@ -2,6 +2,7 @@ package com.webdev.siteparser.service.jpa;
 
 import com.webdev.siteparser.domain.Page;
 import com.webdev.siteparser.domain.Project;
+import com.webdev.siteparser.domain.User;
 import com.webdev.siteparser.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,8 +38,8 @@ public class ProjectService {
         return projectRepository.findById(id).get();
     }
 
-    public List<Project> getAll() {
-        return projectRepository.findAll();
+    public List<Project> getAll(User user) {
+        return projectRepository.getAllProjectsForUser(user.getId());
     }
 
     public void delete(Project project) {

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Користувачі</title>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="w3-light-grey">
+
+<!-- Top menu -->
+<div th:replace="fragments/menu.html :: top-menu"/>
+
+<div class="w3-container">
+    <br/>
+
+    <div class="w3-card w3-white">
+        <div class="w3-container w3-blue"><h3>Користувачі</h3></div>
+
+            <br/>
+
+             <div th:each="user: ${users}">
+                <div class="w3-container w3-light-blue w3-margin-left w3-margin-right w3-padding">
+                    <h3 th:text="${user.email}"></h3>
+
+                    <a th:href="'/admin/user/setActiveState?email=' + ${user.email} + '&active=0'" th:if="${user.active == 1}" href="#" class="w3-red w3-button w3-right">Деактивувати</a>
+                    <a th:href="'/admin/user/setActiveState?email=' + ${user.email} + '&active=1'" th:if="${user.active == 0}" href="#" class="w3-green w3-button w3-right">Активувати</a>
+
+                    <a th:href="'/admin/user/delete?email=' + ${user.email}" href="#" class="w3-red w3-button">Видалити</a>
+                </div>
+
+                <br/>
+            </div>
+
+
+            <br/>
+    </div>
+</div>
+</body>
+</html>
