@@ -70,4 +70,21 @@ public class SecurityProcessor {
         }
         return result.toString();
     }
+
+    public boolean isCurrentUserHasRole(String role) {
+        User user = getUser();
+        if (user == null) {
+            return false;
+        }
+
+        Collection<GrantedAuthority> authorities = getUser().getAuthorities();
+
+        for(GrantedAuthority authority: authorities) {
+            if (authority.getAuthority().equals(role)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

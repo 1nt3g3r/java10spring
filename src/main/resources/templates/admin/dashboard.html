@@ -24,17 +24,26 @@
                 <div class="w3-container w3-light-blue w3-margin-left w3-margin-right w3-padding">
                     <h3 th:text="${user.email}"></h3>
 
+
                     <a th:href="'/admin/user/setActiveState?email=' + ${user.email} + '&active=0'" th:if="${user.active == 1}" href="#" class="w3-red w3-button w3-right">Деактивувати</a>
                     <a th:href="'/admin/user/setActiveState?email=' + ${user.email} + '&active=1'" th:if="${user.active == 0}" href="#" class="w3-green w3-button w3-right">Активувати</a>
+
+                    <a th:href="'/admin/user/edit?email=' + ${user.email}" href="#" class="w3-gray w3-button w3-right w3-margin-right">Редагувати</a>
 
                     <a th:href="'/admin/user/delete?email=' + ${user.email}" href="#" class="w3-red w3-button">Видалити</a>
                 </div>
 
                 <br/>
+
+
+             </div>
+
+            <div class="w3-panel w3-margin-bottom">
+                <a href="/admin/user/add" class="w3-button w3-blue w3-right">Додати користувача</a>
             </div>
 
-
             <br/>
+
     </div>
 </div>
 </body>

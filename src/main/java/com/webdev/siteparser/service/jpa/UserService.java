@@ -45,4 +45,9 @@ public class UserService {
     public void delete(User user) {
         userRepository.delete(user);
     }
+
+    public void setPassword(User user, String password) {
+        String passwordHash = bCryptPasswordEncoder.encode(password);
+        user.setPassword(passwordHash);
+    }
 }

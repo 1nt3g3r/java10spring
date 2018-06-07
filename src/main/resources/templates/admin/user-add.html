@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Редагування користувача</title>
+    <title>Додавання нового користувача</title>
 
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -12,37 +12,32 @@
 <!-- Top menu -->
 <div th:replace="fragments/menu.html :: top-menu"/>
 
+<!--Error-->
+<div class="w3-container w3-red" th:if="${error}">
+    <h3 th:text="${error}">Помилка</h3>
+</div>
+
 <div class="w3-container">
     <br/>
 
     <div class="w3-card w3-white">
-        <div class="w3-container w3-blue"><h3 th:text="'Редагування користувача ' + ${editUser.email}">Редагування користувача</h3></div>
+        <div class="w3-container w3-blue"><h3>Додавання користувача</h3></div>
 
-        <div class="w3-container">
-            <form action="/admin/user/edit" method="post">
-                <br/>
-
-                <input type="hidden" th:value="${editUser.email}" name="email"/>
-
-                <h3>Ім'я</h3>
-                <input th:value="${editUser.name}" type="text" name="name" class="w3-input w3-border"/>
-                <br/>
-
-                <h3>Прізвище</h3>
-                <input th:value="${editUser.lastName}" type="text" name="lastName" class="w3-input w3-border"/>
-                <br/>
-
-                <h3>Пароль (введіть новий, якщо хочете змінити)</h3>
-                <input value="" type="text" name="password" class="w3-input w3-border"/>
-                <br/>
-
-                <a href="/admin" class="w3-button w3-gray">Не зберігати</a>
-
-                <input type="submit" class="w3-button w3-blue w3-right w3-margin-bottom" value="Зберегти"/>
-                <br/>
+        <div class="w3-panel w3-padding-16">
+            <form action="/admin/user/add" method="post">
+                <div><label> Email : <input placeholder="Введіть ваш логін" class="w3-input w3-border w3-margin-bottom" type="text" name="email"/> </label></div>
+                <div><label> Пароль: <input placeholder="Введіть ваш пароль" class="w3-input w3-border w3-margin-bottom" type="password" name="password"/> </label></div>
+                <div><label> Ім'я : <input placeholder="Введіть ваше ім'я" class="w3-input w3-border w3-margin-bottom" type="text" name="name"/> </label></div>
+                <div><label> Прізвище : <input placeholder="Введіть ваше прізвище" class="w3-input w3-border w3-margin-bottom" type="text" name="lastName"/> </label></div>
+                <div>
+                    <a href="/admin" class="w3-button w3-gray">Назад</a>
+                    <input class="w3-button w3-blue w3-right" type="submit" value="Додати користувача"/>
+                </div>
             </form>
-
         </div>
+
+
+
     </div>
 </div>
 </body>
