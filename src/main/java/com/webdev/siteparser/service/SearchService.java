@@ -28,6 +28,29 @@ public class SearchService {
             title = false;
             description = false;
         }
+
+        public static SearchSpecification load(String[] values) {
+            SearchSpecification result = new SearchSpecification();
+            result.reset();
+
+            if (values == null) {
+                return result;
+            }
+
+            for(String value: values) {
+                if (value.equals("url")) {
+                    result.url = true;
+                } else if (value.equals("title")) {
+                    result.title = true;
+                } else if (value.equals("content")) {
+                    result.content = true;
+                } else if (value.equals("description")) {
+                    result.description = true;
+                }
+            }
+
+            return result;
+        }
     }
 
     public Set<Page> search(Project project, String ... keywords) {

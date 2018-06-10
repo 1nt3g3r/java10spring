@@ -14,6 +14,47 @@
 
     <div class="w3-container w3-margin-top">
         <div class="w3-container">
+
+            <div class="w3-container w3-light-gray">
+                <br/>
+                <form action="/project/search" method="post">
+                    <input th:value="${searchPhrase}" class="w3-input" placeholder="Введіть текст для пошуку" type="text" name="searchPhrase"/>
+
+                    <span style="margin-right: 10px;">Шукати в: </span>
+
+                    <input type="hidden" name="projectId" th:value="${project.id}"/>
+
+                    <input type="checkbox" name="searchConditions" value="title" th:checked="${searchInTitle}"/>
+                    <label style="margin-right: 10px;">Title</label>
+
+                    <input type="checkbox" name="searchConditions" value="content" th:checked="${searchInContent}"/>
+                    <label style="margin-right: 10px;">тексті</label>
+
+                    <input type="checkbox" name="searchConditions" value="description" th:checked="${searchInDescription}"/>
+                    <label style="margin-right: 10px;">Description</label>
+
+                    <input type="checkbox" name="searchConditions" value="url" th:checked="${searchInUrl}"/>
+                    <label>URL</label>
+
+                    <br/>
+                    <input class="w3-button w3-blue w3-right" type="submit" value="Шукати">
+                    <br/>
+                </form>
+
+                <br/>
+            </div>
+
+            <br/>
+
+            <!-- Search results header -->
+            <div th:if="${searchPhrase}" class="w3-container w3-gray">
+                <h3 style="display: inline-block;" th:text="'Результати пошуку за запитом [' + ${searchPhrase} + ']'">Результати пошуку для запиту</h3>
+
+                <a style="margin-top: 9px;" th:href="'/project/pages?projectId=' + ${project.id}" class="w3-button w3-right w3-blue">До списку сторінок</a>
+            </div>
+
+            <br/>
+
             <div class="w3-container w3-blue">
                 <h3 th:text="'Сторінки проекту ' + ${project.domain}">Сторінки проекту</h3>
             </div>
@@ -39,10 +80,24 @@
                 </table>
             </div>
 
-            <div class="w3-container w3-margin-top">
+            <div th:if="${pageCount}" class="w3-container w3-margin-top">
                 <a th:if="${pageNumber > 0}" th:href="'/project/pages/?projectId=' + ${project.id} + '&pageNumber=' + ${pageNumber - 1}" href="#" class="w3-button w3-blue">Попередня сторінка</a>
                 <span th:text="'Сторінка №' + ${pageNumber + 1}" style="width: 70%; text-align: center; display: inline-block; font-weight: bold;">Сторінка №5</span>
                 <a th:if="${pageNumber < pageCount - 1}" th:href="'/project/pages/?projectId=' + ${project.id} + '&pageNumber=' + ${pageNumber + 1}" href="#" class="w3-button w3-blue w3-right">Наступна сторінка</a>
+            </div>
+
+            <div th:if="${searchPhrase}" class="w3-container w3-margin-top">
+                <form method="post" action="/project/export">
+
+                    <input type="hidden" name="projectId" th:value="${project.id}"/>
+                    <input type="hidden" name="searchPhrase" th:value="${searchPhrase}"/>
+                    <input th:if="${searchInTitle}" type="hidden" name="searchConditions" value="title"/>
+                    <input th:if="${searchInContent}" type="hidden" name="searchConditions" value="content"/>
+                    <input th:if="${searchInDescription}" type="hidden" name="searchConditions" value="description"/>
+                    <input th:if="${searchInUrl}" type="hidden" name="searchConditions" value="url"/>
+
+                    <input type="submit" class="w3-button w3-red w3-right" value="Експорт в CSV..."/>
+                </form>
             </div>
 
             <br style="height: 64px"/>
