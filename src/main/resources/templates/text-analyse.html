@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Аналіз тексту</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+
+<!-- Top menu -->
+<div th:replace="fragments/menu.html :: top-menu"/>
+
+    <div class="w3-container w3-margin">
+       <div class="w3-row-padding">
+           <div class="w3-col s6">
+               <div class="w3-card">
+                   <form method="post" action="/text-analyse">
+                       <div class="w3-container w3-blue">
+                           <h3>Введіть текст для аналізу</h3>
+                       </div>
+
+                       <div style="padding: 10px">
+                           <textarea th:text="${text}" class="w3-input w3-block w3-border" name="text" rows="15" style="resize: vertical;"></textarea>
+                       </div>
+
+                       <div style="padding: 10px">
+                           <input type="submit" class="w3-button w3-blue w3-block" value="Аналізувати"/>
+                       </div>
+                   </form>
+               </div>
+           </div>
+
+           <div class="w3-col s6">
+               <div class="w3-card">
+                   <div class="w3-container w3-blue">
+                       <h3>Результат аналізу</h3>
+                   </div>
+
+                   <div class="w3-container">
+                       <div th:if="${totalCharCount}" class="w3-container w3-light-blue w3-margin-top w3-margin-bottom">
+                           <h4 th:text="'Загальна кількість символів: ' + ${totalCharCount}">Загальна кільість символів: 10</h4>
+                       </div>
+
+                       <div th:if="${charCountWithoutSpaces}" class="w3-container w3-light-blue w3-margin-top w3-margin-bottom">
+                           <h4 th:text="'Символів без пробілів: ' + ${charCountWithoutSpaces}">Кількість символів без пробілів: 10</h4>
+                       </div>
+
+                       <div th:if="${phraseCount}" class="w3-container w3-light-blue w3-margin-top w3-margin-bottom">
+                           <h4 th:text="'Кількість фраз: ' + ${phraseCount}">Кількість фраз: 10</h4>
+                       </div>
+
+                       <div th:if="${totalWordCount}" class="w3-container w3-light-blue w3-margin-top w3-margin-bottom">
+                           <h4 th:text="'Слів всього: ' + ${totalWordCount}">Слів всього: 10</h4>
+                       </div>
+
+                       <div th:if="${averageWordCountInPhrase}" class="w3-container w3-light-blue w3-margin-top w3-margin-bottom">
+                           <h4 th:text="'Середня кількість слів у фразі: ' + ${averageWordCountInPhrase}">Середня кількість слів у фразі: 10</h4>
+                       </div>
+
+                       <div th:if="${averageWordLength}" class="w3-container w3-light-blue w3-margin-top w3-margin-bottom">
+                           <h4 th:text="'Середня довжина слова: ' + ${averageWordLength}">Середня довжина слова: 10</h4>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+
+</body>
+</html>
